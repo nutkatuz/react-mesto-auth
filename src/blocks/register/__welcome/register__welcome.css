@@ -1,0 +1,16 @@
+.register__welcome{
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  margin: 0 auto 20px;
+}
+
+
+@media screen and (max-width: 790px) {
+  .register {
+    font-size: 20px;
+    line-height: 24,2px;
+  }
+}
