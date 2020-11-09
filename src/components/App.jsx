@@ -9,9 +9,9 @@ import { api } from "../utils/api";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import ProtectedRoute from './ProtectedRoute';
-import Register from './Register.jsx';
-// import Login from './Login.jsx';
+import ProtectedRoute from "./ProtectedRoute";
+import Register from "./Register.jsx";
+import Login from './Login.jsx';
 
 function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
@@ -20,6 +20,16 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+
+
+  const [loggedIn, setLoggedIn] = useState(true); //поменять потом в конце true!
+  const [userData, setUserData] = useState({ username: '', email: ''});
+  const history = useHistory();
+
+  const handleLogin = (userData) => {
+    setUserData(userData);
+    setLoggedIn(true);
+  }
 
   useEffect(() => {
     function handleESCclose(evt) {
@@ -136,58 +146,51 @@ function App() {
   return (
     <div className="page">
       <div className="page__container">
-
-
-
-    {/* <ProtectedRoute path="/ducks" loggedIn={loggedIn} component={Ducks} /> */}
-    
-    <Switch>
-        <Route path="/sign-up">
-            <Register />
-        </Route>
-        {/* <Route>
-          {loggedIn ? <Redirect to="/ducks" /> : <Redirect to="/login" />}
-        </Route> */}
-        <Route path="/sign-in">
-          <section className="popup">
-            {/* <Login handleLogin={handleLogin} /> */}
-          </section>
-        </Route>
-
         <CurrentUserContext.Provider value={currentUser}>
-            <div className="page__header-and-main-wrapper">
+          <Switch>
               <Header />
-              <Route exact path="/">
-              <Main
-                onEditAvatar={handleEditAvatarClick}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onCardClick={handleCardClick}
-                cards={cards}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
+              <ProtectedRoute exact path="/" loggedIn={loggedIn} >
+                <Main
+                  onEditAvatar={handleEditAvatarClick}
+                  onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onCardClick={handleCardClick}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
+                />
+                <Footer />
+              </ProtectedRoute>
+              <Route path="/sign-up">
+                <Register />
+              </Route>
+              <Route path="/sign-in">
+                <section className="popup">
+                  <Login handleLogin={handleLogin} />
+                </section>
+              </Route>
+              <Route>
+                {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+              </Route>
+          </Switch>
+
+              <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+              <EditProfilePopup
+                isOpen={isEditProfilePopupOpen}
+                onClose={closeAllPopups}
+                onUpdateUser={handleUpdateUser}
               />
-            <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-            <EditProfilePopup
-              isOpen={isEditProfilePopupOpen}
-              onClose={closeAllPopups}
-              onUpdateUser={handleUpdateUser}
-            />
-            <EditAvatarPopup
-              isOpen={isEditAvatarPopupOpen}
-              onClose={closeAllPopups}
-              onUpdateAvatar={handleUpdateAvatar}
-            />
-            <AddPlacePopup
-              isOpen={isAddPlacePopupOpen}
-              onClose={closeAllPopups}
-              onAddPlace={handleAddPlaceSubmit}
-            />
-          </Route>
-            </div>
+              <EditAvatarPopup
+                isOpen={isEditAvatarPopupOpen}
+                onClose={closeAllPopups}
+                onUpdateAvatar={handleUpdateAvatar}
+              />
+              <AddPlacePopup
+                isOpen={isAddPlacePopupOpen}
+                onClose={closeAllPopups}
+                onAddPlace={handleAddPlaceSubmit}
+              />
         </CurrentUserContext.Provider>
-    </Switch>
-          <Footer />
       </div>
     </div>
   );

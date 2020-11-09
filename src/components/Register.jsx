@@ -39,25 +39,11 @@ const Register = () => {
 
   return(
     <section className="register">
-      <h1 className="register__welcome">
-        Регистрация
-      </h1>
-      <form className="register__form">
-        <label htmlFor="email">
-          Email:
-        </label>
-        <input id="email" name="email" type="email" value={data.email} onChange={handleChange} />
-        <label htmlFor="password">
-          Пароль:
-        </label>
-        <input id="password" name="password" type="password" value={data.password} onChange={handleChange} />
-        <label htmlFor="confirmPassword">
-          Подтвердите пароль:
-        </label>
-        <input id="confirmPassword" name="confirmPassword" type="password" value={data.confirmPassword} onChange={handleChange} />
-        <div className="register__button-container">
+            <form className="register__form">
+      <h1 className="register__welcome">Вход</h1>
+        <input className="register__input" id="email" name="email" type="email"  />
+        <input className="register__input" id="password" name="password" type="password"  />
           <button type="submit" className="register__link">Зарегистрироваться</button>
-        </div>
       </form>
       <div className="register__signin">
         <p>Уже зарегистрированы?</p>
