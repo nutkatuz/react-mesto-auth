@@ -35,7 +35,7 @@ const Login = (props) => {
           name="email"
           type="email"
           onChange={handleChange}
-          autoComplete="true"
+          autoComplete="on"
         />
         <input
           className="authform__input"
@@ -45,6 +45,7 @@ const Login = (props) => {
           value={data.password}
           placeholder="Пароль"
           onChange={handleChange}
+          autoComplete="current-password"
         />
         <button
           type="submit"

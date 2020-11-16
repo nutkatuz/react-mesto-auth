@@ -155,10 +155,11 @@ function App() {
     auth.authorize(email, password)
       .then((res) => {
         if (res.token) {// tokenCheck();
+          setIsSuccess(true) //обязательное поле
           localStorage.setItem('token', res.token);
-          setIsSuccess(true);
           setEmail(email)
-          history.push('/');}
+          history.push('/')
+        }
       })
       .catch((err) => {
         if (err === 'error400') {
@@ -166,18 +167,19 @@ function App() {
         } else if (err === 'error401') {
           console.log('Пользователь с таким email не найден: ' + err);
         }
-        setIsSuccess(false);
+        console.log(err);
       })
       .finally(() =>{
         setInfoTooltipOpen(true)
+        console.log('Стейт isSuccess в логине: ' + isSuccess);
       })
   }
 
   function handleRegister(email, password) {
-    auth.register(email, password) //????
+    auth.register(email, password) //????//   bb@bb.com
       .then(() => {
-        history.push('/sign-in');
         setIsSuccess(true);
+        history.push('/sign-in');
       })
       .catch((err) => {
         if (err === 'error400') {
@@ -186,9 +188,11 @@ function App() {
           console.log('Пользователь с таким email не найден: ' + err);
         }
         setIsSuccess(false);
+        console.log(err);
       })
       .finally(() =>{
         setInfoTooltipOpen(true)
+        console.log('Стейт isSuccess при регистрации: ' + isSuccess);
       })
   }
 

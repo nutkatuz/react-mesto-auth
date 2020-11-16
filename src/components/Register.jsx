@@ -39,6 +39,7 @@ const Register = (props) => {
         type="email"
         placeholder="E-mail"
         onChange={handleChange}
+        autoComplete="on"
       />
       <input
         className="authform__input"
@@ -48,6 +49,7 @@ const Register = (props) => {
         type="password"
         placeholder="Пароль"
         onChange={handleChange}
+        autoComplete="current-password"
       />
         <button
           type="submit"
