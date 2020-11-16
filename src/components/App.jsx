@@ -211,8 +211,8 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            //setEmail( res.data.email);
-            // history.push('/');
+            setEmail( res.data.email);
+            history.push('/');
           }
         })
         .catch((err) => {
