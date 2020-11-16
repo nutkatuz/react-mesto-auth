@@ -158,6 +158,7 @@ function App() {
           setIsSuccess(true) //обязательное поле
           localStorage.setItem('token', res.token);
           setEmail(email)
+          setLoggedIn(true)
           history.push('/')
         }
       })
