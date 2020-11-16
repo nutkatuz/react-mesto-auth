@@ -156,7 +156,7 @@ function App() {
       .then((res) => {
         if (res.token) {// tokenCheck();
           setIsSuccess(true) //обязательное поле
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('jwt', res.token);
           setEmail(email)
           setLoggedIn(true)
           history.push('/')
@@ -247,7 +247,7 @@ function App() {
                   cards={cards}
                   onEditAvatar={handleEditAvatarClick}
                   onEditProfile={handleEditProfileClick}
-                  onAddPlace={handleAddPlaceClick}
+                  onAddCard={handleAddPlaceClick}
                   onCardClick={handleCardClick}
                   onCardLike={handleCardLike}
                   onCardDelete={handleCardDelete}
@@ -294,7 +294,7 @@ function App() {
               <AddPlacePopup
                 isOpen={isAddPlacePopupOpen}
                 onClose={closeAllPopups}
-                onAddPlace={handleAddPlaceSubmit}
+                onAddCard={handleAddPlaceSubmit}
               />
       </div>
   </CurrentUserContext.Provider>

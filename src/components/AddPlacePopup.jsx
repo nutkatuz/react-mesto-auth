@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  // Стейт, в котором содержится значение инпута
+function AddPlacePopup({ isOpen, onClose, onAddCard }) {
+
   const [form, setForm] = useState({
     name: '',
     link: ''
   });
 
+  useEffect(() => {
+    setForm({
+    name: '',
+    link: ''
+    });
+  }, [isOpen])
 
   function handleChange(e) {  // Обработчик изменения инпута обновляет стейт
     const input = e.target;
@@ -21,7 +27,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAddPlace(form);
+    onAddCard(form);
   }
 
   return (
