@@ -17,7 +17,7 @@ const Register = (props) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    props.onRegister(data.password, data.email);
+    props.onRegister(data.email, data.password); //здееееееесь  АААААА!!! у меня пароль и емейл одинаковые были, я и не замечала никогда ошибки )))) спасибо)))))
     setData({email: '', password: ''});
   }
 

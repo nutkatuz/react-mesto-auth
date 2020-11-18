@@ -16,7 +16,7 @@ export const register = (email, password) => {
       return res.json();
     }
     console.log(`к сожалению у вас реджект, ошибка ${res.status}`)
-    return Promise.reject(res.status);//значение параметра err в блоке catch будет тождественно равно этому аргументу, err===res.status
+    return Promise.reject(res.status);
   })
 };
 
