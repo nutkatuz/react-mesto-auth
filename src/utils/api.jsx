@@ -111,7 +111,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://api.more.students.nomoreparties.xyz',
   headers: {
     // 'Authorization': `Bearer ${token}`,// anna@ya.ru 111
     'Content-Type': 'application/json'
