@@ -16,7 +16,7 @@ class Api {
   }
 
   getUserData() {
-    return fetch(`${this.baseUrl}/users/me`, { //здесь происходит ошибка
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: this.getHeaders(),
     })
     .then(this._processingRes)
@@ -97,23 +97,18 @@ class Api {
   }
 
   getHeaders() {
-    const token = localStorage.getItem('jwt') // надо каждый раз брать его оттуда
+    const token = localStorage.getItem('jwt')
     return {
       ...this.headers,
       'Authorization': `Bearer ${token}`,
     }
-    // return { // const token = getToken();
-    //   "Accept": "application/json",
-    //   "Content-Type": "application/json",
-    //   "Authorization": `Bearer ${localStorage.getItem('jwt')}`
-    // }
+
   }
 }
 
 export const api = new Api({
-  baseUrl: 'http://api.more.students.nomoreparties.xyz',
+  baseUrl: 'https://api.xyz-mesto.students.nomoreparties.xyz',
   headers: {
-    // 'Authorization': `Bearer ${token}`,// anna@ya.ru 111
     'Content-Type': 'application/json'
   }
 })
